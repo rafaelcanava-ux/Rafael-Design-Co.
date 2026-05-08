@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 1. LOGO IN BROWSER TAB (FAVICON) -->
+<link rel="icon" type="image/png" href="PASTE_YOUR_DIRECT_IMAGE_LINK_HERE">
+
 <title>RAFAEL Design Co. — Digital Masterpieces 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -10,8 +14,8 @@
     --bg: #050505;
     --card: #0c0c0c;
     --card2: #141414;
-    --accent: #F2541C; /* Main Orange */
-    --accent2: #F7AD53; /* Peach */
+    --accent: #F2541C; /* Main Orange from your Logo */
+    --accent2: #F7AD53; /* Highlight Peach */
     --white: #f0f0f0;
     --muted: rgba(240,240,240,0.45);
     --border: rgba(255,255,255,0.08);
@@ -27,7 +31,10 @@
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; background: rgba(5,5,5,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .nav-brand-box { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #000; }
+  
+  /* 2. LOGO IMAGE IN NAV */
+  .nav-logo-img { height: 34px; width: auto; filter: drop-shadow(0 0 5px rgba(242,84,28,0.2)); }
+  
   .nav-brand-text { font-size: 0.88rem; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -101,7 +108,8 @@
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="#hero">
-    <div class="nav-brand-box">RD</div>
+    <!-- LOGO IMAGE -->
+    <img src="PASTE_YOUR_DIRECT_IMAGE_LINK_HERE" alt="Logo" class="nav-logo-img">
     <span class="nav-brand-text">RAFAEL Design Co.</span>
   </a>
   <ul class="nav-links">
@@ -120,14 +128,14 @@
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <span>Premium Web Engineering & Digital Design • 2026</span>
+      <span>Premium Web Engineering • 2026</span>
     </div>
     <h1>
       <span>Building Digital</span>
       <span class="line-accent">Masterpieces.</span>
       <span class="line-outline">Redefined.</span>
     </h1>
-    <p class="hero-sub">Empowering brands in 2026 with high-performance, bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
+    <p class="hero-sub">Empowering brands in 2026 with bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-main">View Projects ↓</a>
       <a href="https://www.facebook.com/profile.php?id=61589071388506" class="btn-ghost" target="_blank">Facebook Page ↗</a>
@@ -135,18 +143,18 @@
   </div>
 </section>
 
-<!-- SERVICES (1x4 BENTO) -->
+<!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-label">Capabilities 2026</div>
+      <div class="section-label">Capabilities</div>
       <h2>Bespoke Services</h2>
     </div>
     <div class="bento-grid reveal">
       <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card" target="_blank">
         <div class="bento-icon">⚡</div>
         <div class="bento-title">Website UI Design</div>
-        <p class="bento-desc">Custom homepage layouts and responsive design systems tailored for modern 2026 brands.</p>
+        <p class="bento-desc">Custom homepage layouts and design systems tailored for modern 2026 brands.</p>
         <div class="bento-link">Contra Service ↗</div>
       </a>
       <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card" target="_blank">
@@ -171,7 +179,7 @@
   </div>
 </section>
 
-<!-- PROJECTS (1x4 BENTO) -->
+<!-- PROJECTS -->
 <section id="projects" style="background: #080808;">
   <div class="section-inner">
     <div class="reveal">
@@ -235,7 +243,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 RAFAEL Design Co. • Premium Digital Experiences • Masbate, Philippines</p>
+  <p>© 2026 RAFAEL Design Co. • Masbate, Philippines</p>
   <div class="footer-socials">
     <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Contra</a>
     <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank">Facebook</a>
@@ -243,7 +251,6 @@
 </footer>
 
 <script>
-  // CURSOR SCRIPT
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
@@ -261,7 +268,6 @@
     });
   });
 
-  // REVEAL SCRIPT
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if(e.isIntersecting) {
