@@ -3,17 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- 1. TAB LOGO -->
-<link rel="icon" type="image/png" href="REPLACE_WITH_DIRECT_LINK_HERE">
-
 <title>RAFAEL Design Co. — Digital Masterpieces 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050505;
     --card: #0c0c0c;
-    --accent: #F2541C; /* Logo Orange */
+    --card2: #141414;
+    --accent: #F2541C; /* Main Orange */
     --accent2: #F7AD53; /* Peach */
     --white: #f0f0f0;
     --muted: rgba(240,240,240,0.45);
@@ -30,10 +27,10 @@
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; background: rgba(5,5,5,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .nav-logo-img { height: 32px; width: auto; }
-  .nav-brand-text { font-size: 0.88rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; }
+  .nav-brand-box { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #000; }
+  .nav-brand-text { font-size: 0.88rem; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
-  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: 0.2s; }
+  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
   .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 800 !important; }
 
@@ -55,14 +52,14 @@
   .btn-ghost { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--border); color: var(--white); padding: 1rem 2.2rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; text-decoration: none; }
   .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-  /* BENTO GRID */
+  /* BENTO GRID 1x4 */
   section { padding: 8rem 2.5rem; border-top: 1px solid var(--border); }
   .section-inner { max-width: 1200px; margin: 0 auto; }
   .section-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; text-align: center; }
   h2 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; text-align: center; margin-bottom: 4rem; letter-spacing: 0.05em; }
 
   .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .bento-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; text-decoration: none; color: inherit; transition: 0.4s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .bento-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; text-decoration: none; color: inherit; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; position: relative; overflow: hidden; }
   .bento-card:hover { border-color: rgba(242,84,28,0.4); background: rgba(242,84,28,0.03); transform: translateY(-8px); }
   .bento-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent); }
   .bento-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 1px; color: #fff; }
@@ -74,7 +71,8 @@
   .contact-box { background: var(--card); padding: 4rem; border-radius: 32px; border: 1px solid var(--border); }
   .contact-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
   .contact-icon { width: 50px; height: 50px; background: rgba(242,84,28,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); }
-  .contact-val { font-size: 1.2rem; font-weight: 600; text-decoration: none; color: #fff; }
+  .contact-val { font-size: 1.2rem; font-weight: 600; text-decoration: none; color: #fff; transition: 0.3s; }
+  .contact-val:hover { color: var(--accent); }
 
   /* FOOTER */
   footer { padding: 3rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: #020202; }
@@ -100,10 +98,10 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- NAV -->
 <nav>
   <a class="nav-brand" href="#hero">
-    <!-- 2. LOGO IMAGE IN NAV -->
-    <img src="REPLACE_WITH_DIRECT_LINK_HERE" alt="Logo" class="nav-logo-img">
+    <div class="nav-brand-box">RD</div>
     <span class="nav-brand-text">RAFAEL Design Co.</span>
   </a>
   <ul class="nav-links">
@@ -114,20 +112,22 @@
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="hero-bg-text">RAFAEL</div>
+
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <span>Premium Web Engineering • 2026</span>
+      <span>Premium Web Engineering & Digital Design • 2026</span>
     </div>
     <h1>
       <span>Building Digital</span>
       <span class="line-accent">Masterpieces.</span>
       <span class="line-outline">Redefined.</span>
     </h1>
-    <p class="hero-sub">Empowering brands in 2026 with bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
+    <p class="hero-sub">Empowering brands in 2026 with high-performance, bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-main">View Projects ↓</a>
       <a href="https://www.facebook.com/profile.php?id=61589071388506" class="btn-ghost" target="_blank">Facebook Page ↗</a>
@@ -135,17 +135,18 @@
   </div>
 </section>
 
+<!-- SERVICES (1x4 BENTO) -->
 <section id="services">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-label">Capabilities</div>
+      <div class="section-label">Capabilities 2026</div>
       <h2>Bespoke Services</h2>
     </div>
     <div class="bento-grid reveal">
       <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card" target="_blank">
         <div class="bento-icon">⚡</div>
         <div class="bento-title">Website UI Design</div>
-        <p class="bento-desc">Custom homepage layouts and design systems tailored for modern 2026 brands.</p>
+        <p class="bento-desc">Custom homepage layouts and responsive design systems tailored for modern 2026 brands.</p>
         <div class="bento-link">Contra Service ↗</div>
       </a>
       <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card" target="_blank">
@@ -170,6 +171,7 @@
   </div>
 </section>
 
+<!-- PROJECTS (1x4 BENTO) -->
 <section id="projects" style="background: #080808;">
   <div class="section-inner">
     <div class="reveal">
@@ -201,6 +203,7 @@
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
     <div class="reveal">
@@ -217,6 +220,10 @@
           <div class="contact-icon">📧</div>
           <a href="mailto:rafael.design.co@proton.me" class="contact-val">rafael.design.co@proton.me</a>
         </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="contact-val">Facebook Page ↗</a>
+        </div>
       </div>
       <div class="contact-box" style="background: var(--accent); color: #000; border: none;">
         <p style="font-weight: 800; font-size: 1.5rem; margin-bottom: 2rem;">Ready for your next digital masterpiece?</p>
@@ -226,8 +233,9 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 RAFAEL Design Co. • Philippines</p>
+  <p>© 2026 RAFAEL Design Co. • Premium Digital Experiences • Masbate, Philippines</p>
   <div class="footer-socials">
     <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Contra</a>
     <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank">Facebook</a>
@@ -235,6 +243,7 @@
 </footer>
 
 <script>
+  // CURSOR SCRIPT
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
@@ -252,6 +261,7 @@
     });
   });
 
+  // REVEAL SCRIPT
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if(e.isIntersecting) {
