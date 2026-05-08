@@ -1,289 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAFAEL Design Co. | Premium Web & Digital Design</title>
-    <style>
-        /* UI ANALYSIS & VARIABLES */
-        :root {
-            --bg-dark: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --primary-orange: #F2541C; /* Main Action Color */
-            --accent-peach: #F7AD53;   /* Highlight Color */
-            --text-main: #FFFFFF;
-            --text-dim: #999999;
-            --glow: radial-gradient(circle at center, rgba(242, 84, 28, 0.15) 0%, rgba(5, 5, 5, 0) 75%);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAFAEL Design Co. — Digital Masterpieces</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --card: #0c0c0c;
+    --card2: #141414;
+    --accent: #F2541C; /* Main Orange */
+    --accent2: #F7AD53; /* Peach */
+    --white: #f0f0f0;
+    --muted: rgba(240,240,240,0.45);
+    --border: rgba(255,255,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; cursor: none; }
 
-        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+  /* CURSOR */
+  .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.2s, height 0.2s; }
+  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.4; transition: width 0.25s, height 0.25s; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; background: rgba(5,5,5,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .nav-brand-box { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #000; }
+  .nav-brand-text { font-size: 0.88rem; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 800 !important; }
 
-        /* HEADER UI */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 0;
-        }
-        .logo { font-weight: 800; font-size: 20px; letter-spacing: -1px; text-transform: uppercase; }
-        .logo span { font-weight: 300; opacity: 0.4; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 13px;
-            font-weight: 600;
-            margin-left: 30px;
-        }
-        .nav-links a:hover { color: var(--primary-orange); }
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2.5rem 4rem; }
+  .hero-glow { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(242,84,28,0.12) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; z-index: 0; }
+  .hero-bg-text { position: absolute; bottom: -2rem; left: -1rem; font-family: 'Bebas Neue', sans-serif; font-size: clamp(120px, 22vw, 280px); color: rgba(255,255,255,0.02); letter-spacing: -0.02em; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
+  .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .hero-eyebrow-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+  .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4.5rem, 11vw, 9.5rem); line-height: 0.9; letter-spacing: -0.01em; margin-bottom: 0.2em; }
+  h1 .line-accent { color: var(--accent); display: block; }
+  h1 .line-outline { -webkit-text-stroke: 1px rgba(240,240,240,0.2); color: transparent; display: block; }
+  .hero-sub { max-width: 550px; font-size: 1.05rem; font-weight: 300; line-height: 1.6; color: var(--muted); margin: 1.5rem 0 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-main { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: #000; padding: 1rem 2.2rem; border-radius: 8px; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
+  .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(242,84,28,0.3); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--border); color: var(--white); padding: 1rem 2.2rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; text-decoration: none; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-        /* HERO UX: FOCUS ON VALUE PROP */
-        .hero {
-            position: relative;
-            text-align: center;
-            padding: 120px 0;
-            background: var(--glow);
-        }
-        .badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(242, 84, 28, 0.1);
-            border: 1px solid rgba(242, 84, 28, 0.2);
-            border-radius: 100px;
-            color: var(--accent-peach);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-        }
-        h1 {
-            font-size: clamp(48px, 10vw, 92px);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -4px;
-            margin: 0 0 30px 0;
-        }
-        .hero p {
-            font-size: 18px;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        .cta-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .btn {
-            padding: 18px 36px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 15px;
-        }
-        .btn-primary { background: var(--primary-orange); color: #000; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(242, 84, 28, 0.3); }
-        .btn-secondary { background: transparent; color: #fff; border: 1px solid var(--border); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.05); }
+  /* BENTO GRID 1x4 */
+  section { padding: 8rem 2.5rem; border-top: 1px solid var(--border); }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; text-align: center; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; text-align: center; margin-bottom: 4rem; letter-spacing: 0.05em; }
 
-        /* SECTION STYLING */
-        section { padding: 100px 0; border-top: 1px solid var(--border); }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 32px; font-weight: 800; margin: 0; }
+  .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .bento-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; text-decoration: none; color: inherit; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .bento-card:hover { border-color: rgba(242,84,28,0.4); background: rgba(242,84,28,0.03); transform: translateY(-8px); }
+  .bento-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent); }
+  .bento-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 1px; color: #fff; }
+  .bento-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; }
+  .bento-link { margin-top: auto; font-size: 0.65rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
 
-        /* BENTO GRID 1x4 */
-        .grid-1x4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; }
+  .contact-box { background: var(--card); padding: 4rem; border-radius: 32px; border: 1px solid var(--border); }
+  .contact-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+  .contact-icon { width: 50px; height: 50px; background: rgba(242,84,28,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); }
+  .contact-val { font-size: 1.2rem; font-weight: 600; text-decoration: none; color: #fff; }
 
-        .bento-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 35px;
-            border-radius: 24px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-        .bento-card:hover {
-            border-color: rgba(242, 84, 28, 0.4);
-            background: rgba(242, 84, 28, 0.02);
-            transform: scale(1.02);
-        }
-        .icon-circle {
-            width: 45px; height: 45px;
-            background: rgba(242, 84, 28, 0.1);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-bottom: 25px;
-            color: var(--primary-orange);
-        }
-        .bento-card h3 { font-size: 16px; font-weight: 700; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-        .bento-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.6; }
-        .bento-card .link-hint { 
-            margin-top: 30px; font-size: 10px; font-weight: 800; 
-            color: var(--primary-orange); opacity: 0.7; 
-        }
+  /* FOOTER */
+  footer { padding: 3rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: #020202; }
+  footer p { font-size: 0.75rem; color: var(--muted); }
+  .footer-socials a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 600; }
+  .footer-socials a:hover { color: var(--accent); }
 
-        /* CONTACT UX */
-        footer { padding: 100px 0 50px; background: #020202; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
-        .footer-brand h2 { font-size: 40px; font-weight: 900; margin: 0 0 20px 0; letter-spacing: -2px; }
-        .contact-pill {
-            display: inline-flex; align-items: center;
-            padding: 12px 20px; background: rgba(255,255,255,0.03);
-            border-radius: 50px; border: 1px solid var(--border);
-            margin-bottom: 15px; color: var(--text-dim); font-size: 14px;
-        }
-        .footer-links h4 { font-size: 12px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 25px; }
-        .footer-links a { display: block; text-decoration: none; color: #fff; font-size: 15px; margin-bottom: 12px; opacity: 0.7; }
-        .footer-links a:hover { opacity: 1; color: var(--primary-orange); }
+  /* ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1024px) {
-            .grid-1x4 { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 600px) {
-            .grid-1x4 { grid-template-columns: 1fr; }
-            h1 { font-size: 50px; }
-            .hero { padding: 80px 0; }
-        }
-    </style>
+  @media (max-width: 1100px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
+    .bento-grid, .contact-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 4.5rem; }
+    .nav-links { display: none; }
+    .contact-box { padding: 2.5rem; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <nav>
-            <div class="logo">RAFAEL <span>Design Co.</span></div>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero">
+    <div class="nav-brand-box">RD</div>
+    <span class="nav-brand-text">RAFAEL Design Co.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://contra.com/rafael_cana_8b0gke5l" class="nav-cta" target="_blank">Work with me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-bg-text">RAFAEL</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span>Premium Web Engineering & Digital Design</span>
     </div>
+    <h1>
+      <span>Building Digital</span>
+      <span class="line-accent">Masterpieces.</span>
+      <span class="line-outline">Redefined.</span>
+    </h1>
+    <p class="hero-sub">We deliver high-performance, bespoke web experiences with a focus on speed, conversion, and premium aesthetics.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-main">View Projects ↓</a>
+      <a href="https://www.facebook.com/profile.php?id=61589071388506" class="btn-ghost" target="_blank">Facebook Page ↗</a>
+    </div>
+  </div>
+</section>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="container">
-            <div class="badge">Premium Web Engineering & Digital Design</div>
-            <h1>Building Digital<br><span class="orange-text" style="color: var(--primary-orange);">Masterpieces.</span></h1>
-            <p>We deliver high-performance, bespoke web experiences with a focus on speed, conversion, and premium aesthetics.</p>
-            <div class="cta-group">
-                <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank" class="btn btn-primary">Start a Project on Contra</a>
-                <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="btn btn-secondary">Visit Facebook Page</a>
-            </div>
-        </div>
-    </header>
+<!-- SERVICES (1x4 BENTO) -->
+<section id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Capabilities</div>
+      <h2>Bespoke Services</h2>
+    </div>
+    <div class="bento-grid reveal">
+      <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card" target="_blank">
+        <div class="bento-icon">⚡</div>
+        <div class="bento-title">Website UI Design</div>
+        <p class="bento-desc">Custom homepage layouts and responsive design systems tailored for modern brands.</p>
+        <div class="bento-link">Contra Service ↗</div>
+      </a>
+      <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card" target="_blank">
+        <div class="bento-icon">🎨</div>
+        <div class="bento-title">Branding Kit</div>
+        <p class="bento-desc">Cohesive color palettes and social media templates for high-impact visual identity.</p>
+        <div class="bento-link">Contra Service ↗</div>
+      </a>
+      <a href="https://contra.com/s/F2OPl6Ub-ai-powered-product-ads" class="bento-card" target="_blank">
+        <div class="bento-icon">🤖</div>
+        <div class="bento-title">AI Product Ads</div>
+        <p class="bento-desc">Cutting-edge AI-generated ad visuals and mockups built for marketing conversion.</p>
+        <div class="bento-link">Contra Service ↗</div>
+      </a>
+      <a href="https://contra.com/s/YF2bMq3F-modern-landing-page-design" class="bento-card" target="_blank">
+        <div class="bento-icon">🚀</div>
+        <div class="bento-title">Landing Pages</div>
+        <p class="bento-desc">Conversion-focused landing pages designed for extreme performance and speed.</p>
+        <div class="bento-link">Contra Service ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- SERVICES SECTION -->
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Bespoke Services</h2>
-            </div>
-            <div class="grid-1x4">
-                <a href="https://contra.com/s/qAl2QEXP-website-ui-design" target="_blank" class="bento-card">
-                    <div class="icon-circle">⚡</div>
-                    <h3>Website UI Design</h3>
-                    <p>Custom homepage layouts and design systems tailored to your unique brand identity.</p>
-                    <div class="link-hint">VIEW SERVICE ↗</div>
-                </a>
-                <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" target="_blank" class="bento-card">
-                    <div class="icon-circle">🎨</div>
-                    <h3>Branding Kit</h3>
-                    <p>Comprehensive social media templates and brand palettes to help you stand out.</p>
-                    <div class="link-hint">VIEW SERVICE ↗</div>
-                </a>
-                <a href="https://contra.com/s/F2OPl6Ub-ai-powered-product-ads" target="_blank" class="bento-card">
-                    <div class="icon-circle">🤖</div>
-                    <h3>AI-Powered Ads</h3>
-                    <p>Cutting-edge AI visuals and product mockups optimized for high-conversion marketing.</p>
-                    <div class="link-hint">VIEW SERVICE ↗</div>
-                </a>
-                <a href="https://contra.com/s/YF2bMq3F-modern-landing-page-design" target="_blank" class="bento-card">
-                    <div class="icon-circle">🚀</div>
-                    <h3>Landing Pages</h3>
-                    <p>Conversion-focused landing pages hand-crafted for maximum speed and performance.</p>
-                    <div class="link-hint">VIEW SERVICE ↗</div>
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- PROJECTS (1x4 BENTO) -->
+<section id="projects" style="background: #080808;">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Case Studies</div>
+      <h2>Featured Work</h2>
+    </div>
+    <div class="bento-grid reveal">
+      <a href="https://drive.proton.me/urls/3EX4Q8CMYW#BIJSOMqIZyYi" class="bento-card" target="_blank">
+        <div class="bento-title">UI Case Study</div>
+        <p class="bento-desc">Deep-dive into the user experience design of a modern digital application.</p>
+        <div class="bento-link">Proton Drive ↗</div>
+      </a>
+      <a href="https://drive.proton.me/urls/5AJ2GZSNBM#NQVHqNkT2sJJ" class="bento-card" target="_blank">
+        <div class="bento-title">Branding Showcase</div>
+        <p class="bento-desc">A full breakdown of a comprehensive social media branding kit.</p>
+        <div class="bento-link">Proton Drive ↗</div>
+      </a>
+      <a href="https://drive.proton.me/urls/VR3NSNXB40#lRUhx1eb4ruD" class="bento-card" target="_blank">
+        <div class="bento-title">AI Ads Library</div>
+        <p class="bento-desc">A gallery of product advertisements generated with AI precision.</p>
+        <div class="bento-link">Proton Drive ↗</div>
+      </a>
+      <a href="https://drive.proton.me/urls/8BJH1BRYVG#76YlzWkiMobB" class="bento-card" target="_blank">
+        <div class="bento-title">Landing Page</div>
+        <p class="bento-desc">Visual and functional landing page project for high-tier SaaS startups.</p>
+        <div class="bento-link">Proton Drive ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- PROJECTS SECTION -->
-    <section id="projects" style="background: #080808;">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-            </div>
-            <div class="grid-1x4">
-                <a href="https://drive.proton.me/urls/3EX4Q8CMYW#BIJSOMqIZyYi" target="_blank" class="bento-card">
-                    <h3>UI Case Study</h3>
-                    <p>Visual documentation and UX research for premium web applications.</p>
-                    <div class="link-hint">VIEW IN DRIVE ↗</div>
-                </a>
-                <a href="https://drive.proton.me/urls/5AJ2GZSNBM#NQVHqNkT2sJJ" target="_blank" class="bento-card">
-                    <h3>Social Media Kit</h3>
-                    <p>A full showcase of professional social assets and brand guidelines.</p>
-                    <div class="link-hint">VIEW IN DRIVE ↗</div>
-                </a>
-                <a href="https://drive.proton.me/urls/VR3NSNXB40#lRUhx1eb4ruD" target="_blank" class="bento-card">
-                    <h3>AI Product Ads</h3>
-                    <p>An experimental collection of AI-assisted product photography and ads.</p>
-                    <div class="link-hint">VIEW IN DRIVE ↗</div>
-                </a>
-                <a href="https://drive.proton.me/urls/8BJH1BRYVG#76YlzWkiMobB" target="_blank" class="bento-card">
-                    <h3>Landing Design</h3>
-                    <p>A showcase of high-performance landing page layouts for SaaS.</p>
-                    <div class="link-hint">VIEW IN DRIVE ↗</div>
-                </a>
-            </div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Get in Touch</div>
+      <h2>Let's build something iconic.</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-box">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <a href="tel:09637792416" class="contact-val">09637792416</a>
         </div>
-    </section>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <a href="mailto:rafael.design.co@proton.me" class="contact-val">rafael.design.co@proton.me</a>
+        </div>
+      </div>
+      <div class="contact-box" style="background: var(--accent); color: #000; border: none;">
+        <p style="font-weight: 800; font-size: 1.5rem; margin-bottom: 2rem;">Ready for your next digital masterpiece?</p>
+        <a href="https://contra.com/rafael_cana_8b0gke5l" class="btn-ghost" style="border-color: #000; color: #000; display: block; text-align: center;">HIRE ME ON CONTRA</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- FOOTER / CONTACT UX -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>Let's build something <span style="color: var(--primary-orange);">iconic.</span></h2>
-                    <div class="contact-pill">📞 09637792416</div><br>
-                    <div class="contact-pill">📧 rafael.design.co@proton.me</div>
-                </div>
-                <div class="footer-links">
-                    <h4>Navigation</h4>
-                    <a href="#services">Services</a>
-                    <a href="#projects">Projects</a>
-                    <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Work with me</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Social</h4>
-                    <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Contra Profile</a>
-                    <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank">Facebook Page</a>
-                </div>
-            </div>
-            <p style="margin-top: 80px; font-size: 12px; opacity: 0.3; text-align: center;">
-                © 2024 RAFAEL Design Co. Hand-crafted for performance.
-            </p>
-        </div>
-    </footer>
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 RAFAEL Design Co. • Premium Digital Experiences.</p>
+  <div class="footer-socials">
+    <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Contra</a>
+    <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank">Facebook</a>
+  </div>
+</footer>
+
+<script>
+  // CURSOR SCRIPT
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+  (function loop(){ rx+=(mx-rx)*0.13; ry+=(my-ry)*0.13; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  
+  document.querySelectorAll('a, button, .bento-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { 
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        ring.style.width = '60px'; ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => { 
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.width = '32px'; ring.style.height = '32px';
+    });
+  });
+
+  // REVEAL SCRIPT
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+        }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
