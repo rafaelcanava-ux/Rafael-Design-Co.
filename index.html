@@ -50,21 +50,21 @@
     position: fixed; top: 0; width: 100%; z-index: 1000; 
     display: flex; align-items: center; justify-content: space-between; 
     padding: 0 5%; height: var(--nav-height);
-    background: rgba(5,5,5,0.8); backdrop-filter: blur(15px); 
+    background: rgba(5,5,5,0.85); backdrop-filter: blur(15px); 
     border-bottom: 1px solid var(--border);
   }
   .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-brand-box { 
-    width: 30px; height: 30px; background: var(--accent); border-radius: 5px; 
+    width: 32px; height: 32px; background: var(--accent); border-radius: 6px; 
     display: flex; align-items: center; justify-content: center; 
-    font-weight: 800; color: #000; font-size: 0.7rem;
+    font-weight: 800; color: #000; font-size: 0.75rem;
   }
-  .nav-brand-text { font-size: 0.8rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+  .nav-brand-text { font-size: 0.85rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
   
   .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: 0.3s; }
   .nav-links a:hover { color: var(--accent); }
-  .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 8px 16px; border-radius: 4px; font-weight: 800 !important; }
+  .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 8px 18px; border-radius: 4px; font-weight: 800 !important; }
 
   /* HERO */
   #hero { 
@@ -73,7 +73,7 @@
   }
   .hero-glow { 
     position: absolute; width: 60vw; height: 60vw; 
-    background: radial-gradient(circle, rgba(var(--accent-rgb),0.15) 0%, transparent 70%); 
+    background: radial-gradient(circle, rgba(var(--accent-rgb),0.12) 0%, transparent 70%); 
     top: -10%; right: -10%; pointer-events: none; 
   }
   .hero-bg-text { 
@@ -84,28 +84,28 @@
   
   h1 { 
     font-family: 'Bebas Neue', sans-serif; 
-    font-size: clamp(3.5rem, 12vw, 9rem); 
+    font-size: clamp(3.5rem, 11vw, 9rem); 
     line-height: 0.9; margin-bottom: 1.5rem; 
   }
   h1 span { display: block; }
   h1 .line-accent { color: var(--accent); }
   h1 .line-outline { -webkit-text-stroke: 1px rgba(240,240,240,0.3); color: transparent; }
 
-  .hero-sub { max-width: 500px; font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--muted); margin-bottom: 2.5rem; }
+  .hero-sub { max-width: 500px; font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--muted); margin-bottom: 2.5rem; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   /* BUTTONS */
   .btn { 
-    padding: 14px 28px; border-radius: 8px; font-weight: 800; text-transform: uppercase; 
-    font-size: 0.75rem; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 30px; border-radius: 8px; font-weight: 800; text-transform: uppercase; 
+    font-size: 0.8rem; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
   }
   .btn-main { background: var(--accent); color: #000; }
   .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.3); }
   .btn-ghost { border: 1px solid var(--border); color: var(--white); }
-  .btn-ghost:hover { background: rgba(255,255,255,0.05); }
+  .btn-ghost:hover { border-color: var(--accent); background: rgba(var(--accent-rgb), 0.05); }
 
   /* SECTIONS */
-  section { padding: 6rem 5%; }
+  section { padding: 8rem 5%; }
   .section-header { text-align: center; margin-bottom: 4rem; }
   .label { font-size: 0.65rem; color: var(--accent); font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
   h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 1px; }
@@ -119,33 +119,34 @@
   }
   .bento-card { 
     background: var(--card); border: 1px solid var(--border); 
-    padding: 2rem; border-radius: 20px; text-decoration: none; color: inherit; 
+    padding: 2.5rem; border-radius: 20px; text-decoration: none; color: inherit; 
     display: flex; flex-direction: column; transition: 0.4s ease;
   }
   .bento-card:hover { border-color: var(--accent); background: #111; transform: translateY(-5px); }
-  .bento-icon { font-size: 1.8rem; margin-bottom: 1.5rem; }
-  .bento-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.8rem; text-transform: uppercase; color: #fff; }
-  .bento-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
-  .bento-link { margin-top: auto; font-size: 0.65rem; font-weight: 800; color: var(--accent); letter-spacing: 1px; }
+  .bento-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent); }
+  .bento-title { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.8rem; text-transform: uppercase; color: #fff; }
+  .bento-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.6; }
+  .bento-link { margin-top: auto; font-size: 0.7rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; }
 
   /* CONTACT */
   .contact-wrap { 
     display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; max-width: 1200px; margin: 0 auto; 
   }
   .contact-box { background: var(--card); border: 1px solid var(--border); padding: clamp(2rem, 5vw, 4rem); border-radius: 24px; }
-  .contact-method { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; text-decoration: none; }
-  .contact-icon { width: 45px; height: 45px; background: rgba(var(--accent-rgb),0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
-  .contact-info p { font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .contact-method { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; text-decoration: none; color: inherit; }
+  .contact-icon { width: 50px; height: 50px; background: rgba(var(--accent-rgb),0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem; }
+  .contact-info p { font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; font-weight: 700; }
   .contact-info span { font-size: 1.1rem; font-weight: 600; color: #fff; }
 
   /* FOOTER */
   footer { 
     padding: 3rem 5%; border-top: 1px solid var(--border); 
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; 
-    font-size: 0.75rem; color: var(--muted);
+    font-size: 0.8rem; color: var(--muted); background: #020202;
   }
   .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; transition: 0.3s; }
+  .footer-links a:hover { color: var(--accent); }
 
   /* REVEAL ANIMATION */
   .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.3, 1); }
@@ -158,12 +159,11 @@
 
   @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
-    .nav-links { display: none; } /* Hide full nav on mobile */
+    .nav-links { display: none; }
     #hero { padding-top: 100px; }
     .bento-grid, .contact-wrap { grid-template-columns: 1fr; }
     .hero-bg-text { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .contact-box { padding: 2rem; }
+    section { padding: 5rem 1.5rem; }
     footer { flex-direction: column; text-align: center; align-items: center; }
   }
 </style>
@@ -174,15 +174,15 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <a class="nav-brand" href="#">
+  <a class="nav-brand" href="#hero">
     <div class="nav-brand-box">RD</div>
     <span class="nav-brand-text">RAFAEL Design</span>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="https://contra.com/rafael_cana_8b0gke5l" class="nav-cta" target="_blank">Hire Me</a></li>
+    <li><a href="https://contra.com/rafael_cana_8b0gke5l" class="nav-cta" target="_blank">Work with me</a></li>
   </ul>
 </nav>
 
@@ -190,79 +190,111 @@
   <div class="hero-glow"></div>
   <div class="hero-bg-text">RAFAEL</div>
   <div class="hero-content">
-    <span class="label">Digital Designer & Engineer</span>
+    <span class="label">Premium Web Engineering • 2026</span>
     <h1>
       <span>Building Digital</span>
       <span class="line-accent">Masterpieces.</span>
       <span class="line-outline">Redefined.</span>
     </h1>
-    <p class="hero-sub">Providing high-performance web engineering and premium aesthetics for brands that demand excellence in 2026.</p>
+    <p class="hero-sub">Empowering brands with high-performance, bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
     <div class="hero-actions">
-      <a href="#projects" class="btn btn-main">Explore Work ↓</a>
-      <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="btn btn-ghost">Facebook ↗</a>
+      <a href="#projects" class="btn btn-main">View Projects ↓</a>
+      <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="btn btn-ghost">Facebook Page ↗</a>
     </div>
   </div>
 </section>
 
+<!-- SERVICES SECTION -->
 <section id="services">
   <div class="section-header reveal">
-    <span class="label">Expertise</span>
+    <span class="label">Capabilities 2026</span>
     <h2>Bespoke Services</h2>
   </div>
   <div class="bento-grid">
     <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card reveal" target="_blank">
       <div class="bento-icon">⚡</div>
-      <div class="bento-title">Web UI Design</div>
-      <p class="bento-desc">High-fidelity interfaces focused on user journey and conversion.</p>
-      <div class="bento-link">VIEW SERVICE ↗</div>
+      <div class="bento-title">Website UI Design</div>
+      <p class="bento-desc">Custom layouts and design systems tailored for modern 2026 brands.</p>
+      <div class="bento-link">Contra Service ↗</div>
     </a>
     <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card reveal" target="_blank" style="transition-delay: 0.1s;">
       <div class="bento-icon">🎨</div>
       <div class="bento-title">Branding Kit</div>
-      <p class="bento-desc">Cohesive visual identities and asset kits for digital growth.</p>
-      <div class="bento-link">VIEW SERVICE ↗</div>
+      <p class="bento-desc">Cohesive color palettes and templates for high-impact visual identity.</p>
+      <div class="bento-link">Contra Service ↗</div>
     </a>
     <a href="https://contra.com/s/F2OPl6Ub-ai-powered-product-ads" class="bento-card reveal" target="_blank" style="transition-delay: 0.2s;">
       <div class="bento-icon">🤖</div>
       <div class="bento-title">AI Product Ads</div>
-      <p class="bento-desc">Next-gen AI generated visuals for social marketing dominance.</p>
-      <div class="bento-link">VIEW SERVICE ↗</div>
+      <p class="bento-desc">AI-generated ad visuals and mockups built for marketing conversion.</p>
+      <div class="bento-link">Contra Service ↗</div>
     </a>
     <a href="https://contra.com/s/YF2bMq3F-modern-landing-page-design" class="bento-card reveal" target="_blank" style="transition-delay: 0.3s;">
       <div class="bento-icon">🚀</div>
       <div class="bento-title">Landing Pages</div>
-      <p class="bento-desc">Ultra-fast, high-converting pages for SaaS and Startups.</p>
-      <div class="bento-link">VIEW SERVICE ↗</div>
+      <p class="bento-desc">Conversion-focused landing pages designed for extreme performance.</p>
+      <div class="bento-link">Contra Service ↗</div>
     </a>
   </div>
 </section>
 
+<!-- PROJECTS SECTION -->
+<section id="projects" style="background: #080808;">
+  <div class="section-header reveal">
+    <span class="label">Case Studies</span>
+    <h2>Featured Work</h2>
+  </div>
+  <div class="bento-grid">
+    <a href="https://drive.proton.me/urls/3EX4Q8CMYW#BIJSOMqIZyYi" class="bento-card reveal" target="_blank">
+      <div class="bento-title">UI Case Study</div>
+      <p class="bento-desc">Deep-dive into the user experience design of a modern digital application.</p>
+      <div class="bento-link">Proton Drive ↗</div>
+    </a>
+    <a href="https://drive.proton.me/urls/5AJ2GZSNBM#NQVHqNkT2sJJ" class="bento-card reveal" target="_blank" style="transition-delay: 0.1s;">
+      <div class="bento-title">Branding Showcase</div>
+      <p class="bento-desc">A full breakdown of a comprehensive social media branding kit.</p>
+      <div class="bento-link">Proton Drive ↗</div>
+    </a>
+    <a href="https://drive.proton.me/urls/VR3NSNXB40#lRUhx1eb4ruD" class="bento-card reveal" target="_blank" style="transition-delay: 0.2s;">
+      <div class="bento-title">AI Ads Library</div>
+      <p class="bento-desc">A gallery of product advertisements generated with AI precision.</p>
+      <div class="bento-link">Proton Drive ↗</div>
+    </a>
+    <a href="https://drive.proton.me/urls/8BJH1BRYVG#76YlzWkiMobB" class="bento-card reveal" target="_blank" style="transition-delay: 0.3s;">
+      <div class="bento-title">Landing Page</div>
+      <p class="bento-desc">Visual and functional landing page project for high-tier SaaS startups.</p>
+      <div class="bento-link">Proton Drive ↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
 <section id="contact">
   <div class="contact-wrap">
     <div class="contact-box reveal">
-      <span class="label" style="text-align: left;">Available for projects</span>
-      <h2 style="font-size: 2.5rem; margin-bottom: 2.5rem;">Let's Create.</h2>
+      <span class="label" style="text-align: left;">Get in Touch</span>
+      <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2.5rem;">Let's build something iconic.</h2>
       
-      <a href="mailto:rafael.design.co@proton.me" class="contact-method">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-info">
-          <p>Email</p>
-          <span>rafael.design.co@proton.me</span>
-        </div>
-      </a>
-
       <a href="tel:09637792416" class="contact-method">
-        <div class="contact-icon">📱</div>
+        <div class="contact-icon">📞</div>
         <div class="contact-info">
           <p>Phone</p>
           <span>09637792416</span>
         </div>
       </a>
+
+      <a href="mailto:rafael.design.co@proton.me" class="contact-method">
+        <div class="contact-icon">📧</div>
+        <div class="contact-info">
+          <p>Email</p>
+          <span>rafael.design.co@proton.me</span>
+        </div>
+      </a>
     </div>
 
-    <div class="contact-box reveal" style="background: var(--accent); color: #000; display: flex; flex-direction: column; justify-content: center;">
-      <p style="font-weight: 800; font-size: 1.5rem; line-height: 1.2; margin-bottom: 2rem;">Ready to start your next masterpiece?</p>
-      <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank" class="btn btn-ghost" style="border-color: #000; color: #000; text-align: center; justify-content: center;">Hire me on Contra</a>
+    <div class="contact-box reveal" style="background: var(--accent); color: #000; border: none; display: flex; flex-direction: column; justify-content: center;">
+      <p style="font-weight: 800; font-size: 1.5rem; line-height: 1.2; margin-bottom: 2rem;">Ready for your next digital masterpiece?</p>
+      <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank" class="btn btn-ghost" style="border-color: #000; color: #000; text-align: center; justify-content: center; font-weight: 800;">HIRE ME ON CONTRA</a>
     </div>
   </div>
 </section>
@@ -303,7 +335,6 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
   } else {
-    // Remove cursor elements on touch devices
     document.getElementById('cursor').remove();
     document.getElementById('cursorRing').remove();
   }
@@ -313,6 +344,7 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
