@@ -2,94 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>RAFAEL Design Co. — Digital Masterpieces 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050505;
     --card: #0c0c0c;
-    --card2: #141414;
-    --accent: #F2541C; /* Main Orange */
-    --accent2: #F7AD53; /* Peach */
+    --accent: #F2541C;
+    --accent-rgb: 242, 84, 28;
     --white: #f0f0f0;
-    --muted: rgba(240,240,240,0.45);
+    --muted: rgba(240,240,240,0.5);
     --border: rgba(255,255,255,0.08);
+    --nav-height: 70px;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; cursor: none; }
 
-  /* CURSOR */
-  .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.2s, height 0.2s; }
-  .cursor-ring { width: 32px; height: 32px; border: 1px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.4; transition: width 0.25s, height 0.25s; }
+  /* RESET & BASE */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--bg); 
+    color: var(--white); 
+    overflow-x: hidden; 
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* CUSTOM CURSOR - Desktop Only */
+  @media (pointer: fine) {
+    body { cursor: none; }
+    .cursor { 
+        width: 8px; height: 8px; background: var(--accent); border-radius: 50%; 
+        position: fixed; pointer-events: none; z-index: 9999; 
+        transform: translate(-50%,-50%); transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    }
+    .cursor-ring { 
+        width: 35px; height: 35px; border: 1px solid var(--accent); border-radius: 50%; 
+        position: fixed; pointer-events: none; z-index: 9998; 
+        transform: translate(-50%,-50%); opacity: 0.4; will-change: left, top;
+    }
+    .cursor.active { transform: translate(-50%,-50%) scale(3); background: rgba(var(--accent-rgb), 0.5); }
+  }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; background: rgba(5,5,5,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-  .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .nav-brand-box { width: 32px; height: 32px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #000; }
-  .nav-brand-text { font-size: 0.88rem; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
-  .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
-  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  nav { 
+    position: fixed; top: 0; width: 100%; z-index: 1000; 
+    display: flex; align-items: center; justify-content: space-between; 
+    padding: 0 5%; height: var(--nav-height);
+    background: rgba(5,5,5,0.8); backdrop-filter: blur(15px); 
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-brand-box { 
+    width: 30px; height: 30px; background: var(--accent); border-radius: 5px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: 800; color: #000; font-size: 0.7rem;
+  }
+  .nav-brand-text { font-size: 0.8rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+  
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: 0.3s; }
   .nav-links a:hover { color: var(--accent); }
-  .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 800 !important; }
+  .nav-cta { background: var(--accent) !important; color: #000 !important; padding: 8px 16px; border-radius: 4px; font-weight: 800 !important; }
 
   /* HERO */
-  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2.5rem 4rem; }
-  .hero-glow { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(242,84,28,0.12) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; z-index: 0; }
-  .hero-bg-text { position: absolute; bottom: -2rem; left: -1rem; font-family: 'Bebas Neue', sans-serif; font-size: clamp(120px, 22vw, 280px); color: rgba(255,255,255,0.02); letter-spacing: -0.02em; pointer-events: none; z-index: 0; white-space: nowrap; user-select: none; }
-  .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; }
-  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-  .hero-eyebrow-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
-  .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); }
-  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4.5rem, 11vw, 9.5rem); line-height: 0.9; letter-spacing: -0.01em; margin-bottom: 0.2em; }
-  h1 .line-accent { color: var(--accent); display: block; }
-  h1 .line-outline { -webkit-text-stroke: 1px rgba(240,240,240,0.2); color: transparent; display: block; }
-  .hero-sub { max-width: 550px; font-size: 1.05rem; font-weight: 300; line-height: 1.6; color: var(--muted); margin: 1.5rem 0 2.5rem; }
+  #hero { 
+    min-height: 100vh; display: flex; align-items: center; 
+    padding: var(--nav-height) 5% 2rem; position: relative; overflow: hidden;
+  }
+  .hero-glow { 
+    position: absolute; width: 60vw; height: 60vw; 
+    background: radial-gradient(circle, rgba(var(--accent-rgb),0.15) 0%, transparent 70%); 
+    top: -10%; right: -10%; pointer-events: none; 
+  }
+  .hero-bg-text { 
+    position: absolute; bottom: -5%; left: -2%; font-family: 'Bebas Neue', sans-serif; 
+    font-size: 25vw; color: rgba(255,255,255,0.02); pointer-events: none; line-height: 1;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 1200px; width: 100%; }
+  
+  h1 { 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: clamp(3.5rem, 12vw, 9rem); 
+    line-height: 0.9; margin-bottom: 1.5rem; 
+  }
+  h1 span { display: block; }
+  h1 .line-accent { color: var(--accent); }
+  h1 .line-outline { -webkit-text-stroke: 1px rgba(240,240,240,0.3); color: transparent; }
+
+  .hero-sub { max-width: 500px; font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--muted); margin-bottom: 2.5rem; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-main { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: #000; padding: 1rem 2.2rem; border-radius: 8px; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
-  .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(242,84,28,0.3); }
-  .btn-ghost { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--border); color: var(--white); padding: 1rem 2.2rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; text-decoration: none; }
+
+  /* BUTTONS */
+  .btn { 
+    padding: 14px 28px; border-radius: 8px; font-weight: 800; text-transform: uppercase; 
+    font-size: 0.75rem; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-main { background: var(--accent); color: #000; }
+  .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.3); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--white); }
   .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-  /* BENTO GRID 1x4 */
-  section { padding: 8rem 2.5rem; border-top: 1px solid var(--border); }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; text-align: center; }
-  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; text-align: center; margin-bottom: 4rem; letter-spacing: 0.05em; }
+  /* SECTIONS */
+  section { padding: 6rem 5%; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .label { font-size: 0.65rem; color: var(--accent); font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 1px; }
 
-  .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .bento-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; text-decoration: none; color: inherit; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; position: relative; overflow: hidden; }
-  .bento-card:hover { border-color: rgba(242,84,28,0.4); background: rgba(242,84,28,0.03); transform: translateY(-8px); }
-  .bento-icon { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent); }
-  .bento-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 1px; color: #fff; }
-  .bento-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 2rem; }
-  .bento-link { margin-top: auto; font-size: 0.65rem; font-weight: 900; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+  /* BENTO GRID */
+  .bento-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 1.5rem; 
+    max-width: 1300px; margin: 0 auto;
+  }
+  .bento-card { 
+    background: var(--card); border: 1px solid var(--border); 
+    padding: 2rem; border-radius: 20px; text-decoration: none; color: inherit; 
+    display: flex; flex-direction: column; transition: 0.4s ease;
+  }
+  .bento-card:hover { border-color: var(--accent); background: #111; transform: translateY(-5px); }
+  .bento-icon { font-size: 1.8rem; margin-bottom: 1.5rem; }
+  .bento-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.8rem; text-transform: uppercase; color: #fff; }
+  .bento-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+  .bento-link { margin-top: auto; font-size: 0.65rem; font-weight: 800; color: var(--accent); letter-spacing: 1px; }
 
   /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; }
-  .contact-box { background: var(--card); padding: 4rem; border-radius: 32px; border: 1px solid var(--border); }
-  .contact-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-  .contact-icon { width: 50px; height: 50px; background: rgba(242,84,28,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); }
-  .contact-val { font-size: 1.2rem; font-weight: 600; text-decoration: none; color: #fff; transition: 0.3s; }
-  .contact-val:hover { color: var(--accent); }
+  .contact-wrap { 
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; max-width: 1200px; margin: 0 auto; 
+  }
+  .contact-box { background: var(--card); border: 1px solid var(--border); padding: clamp(2rem, 5vw, 4rem); border-radius: 24px; }
+  .contact-method { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; text-decoration: none; }
+  .contact-icon { width: 45px; height: 45px; background: rgba(var(--accent-rgb),0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+  .contact-info p { font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .contact-info span { font-size: 1.1rem; font-weight: 600; color: #fff; }
 
   /* FOOTER */
-  footer { padding: 3rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: #020202; }
-  footer p { font-size: 0.75rem; color: var(--muted); }
-  .footer-socials a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 600; }
-  .footer-socials a:hover { color: var(--accent); }
+  footer { 
+    padding: 3rem 5%; border-top: 1px solid var(--border); 
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; 
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-weight: 600; }
 
-  /* ANIMATIONS */
-  .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* REVEAL ANIMATION */
+  .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.3, 1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 1100px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 1100px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 768px) {
-    .bento-grid, .contact-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 4.5rem; }
-    .nav-links { display: none; }
-    .contact-box { padding: 2.5rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; } /* Hide full nav on mobile */
+    #hero { padding-top: 100px; }
+    .bento-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .hero-bg-text { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .contact-box { padding: 2rem; }
+    footer { flex-direction: column; text-align: center; align-items: center; }
   }
 </style>
 </head>
@@ -98,179 +173,151 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#hero">
+  <a class="nav-brand" href="#">
     <div class="nav-brand-box">RD</div>
-    <span class="nav-brand-text">RAFAEL Design Co.</span>
+    <span class="nav-brand-text">RAFAEL Design</span>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#projects">Work</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="https://contra.com/rafael_cana_8b0gke5l" class="nav-cta" target="_blank">Work with me</a></li>
+    <li><a href="https://contra.com/rafael_cana_8b0gke5l" class="nav-cta" target="_blank">Hire Me</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="hero-bg-text">RAFAEL</div>
-
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-dot"></div>
-      <span>Premium Web Engineering & Digital Design • 2026</span>
-    </div>
+    <span class="label">Digital Designer & Engineer</span>
     <h1>
       <span>Building Digital</span>
       <span class="line-accent">Masterpieces.</span>
       <span class="line-outline">Redefined.</span>
     </h1>
-    <p class="hero-sub">Empowering brands in 2026 with high-performance, bespoke web experiences focused on speed, conversion, and premium aesthetics.</p>
+    <p class="hero-sub">Providing high-performance web engineering and premium aesthetics for brands that demand excellence in 2026.</p>
     <div class="hero-actions">
-      <a href="#projects" class="btn-main">View Projects ↓</a>
-      <a href="https://www.facebook.com/profile.php?id=61589071388506" class="btn-ghost" target="_blank">Facebook Page ↗</a>
+      <a href="#projects" class="btn btn-main">Explore Work ↓</a>
+      <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="btn btn-ghost">Facebook ↗</a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES (1x4 BENTO) -->
 <section id="services">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-label">Capabilities 2026</div>
-      <h2>Bespoke Services</h2>
-    </div>
-    <div class="bento-grid reveal">
-      <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card" target="_blank">
-        <div class="bento-icon">⚡</div>
-        <div class="bento-title">Website UI Design</div>
-        <p class="bento-desc">Custom homepage layouts and responsive design systems tailored for modern 2026 brands.</p>
-        <div class="bento-link">Contra Service ↗</div>
-      </a>
-      <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card" target="_blank">
-        <div class="bento-icon">🎨</div>
-        <div class="bento-title">Branding Kit</div>
-        <p class="bento-desc">Cohesive color palettes and social media templates for high-impact visual identity.</p>
-        <div class="bento-link">Contra Service ↗</div>
-      </a>
-      <a href="https://contra.com/s/F2OPl6Ub-ai-powered-product-ads" class="bento-card" target="_blank">
-        <div class="bento-icon">🤖</div>
-        <div class="bento-title">AI Product Ads</div>
-        <p class="bento-desc">Cutting-edge AI-generated ad visuals and mockups built for marketing conversion.</p>
-        <div class="bento-link">Contra Service ↗</div>
-      </a>
-      <a href="https://contra.com/s/YF2bMq3F-modern-landing-page-design" class="bento-card" target="_blank">
-        <div class="bento-icon">🚀</div>
-        <div class="bento-title">Landing Pages</div>
-        <p class="bento-desc">Conversion-focused landing pages designed for extreme performance and speed.</p>
-        <div class="bento-link">Contra Service ↗</div>
-      </a>
-    </div>
+  <div class="section-header reveal">
+    <span class="label">Expertise</span>
+    <h2>Bespoke Services</h2>
+  </div>
+  <div class="bento-grid">
+    <a href="https://contra.com/s/qAl2QEXP-website-ui-design" class="bento-card reveal" target="_blank">
+      <div class="bento-icon">⚡</div>
+      <div class="bento-title">Web UI Design</div>
+      <p class="bento-desc">High-fidelity interfaces focused on user journey and conversion.</p>
+      <div class="bento-link">VIEW SERVICE ↗</div>
+    </a>
+    <a href="https://contra.com/s/skE2bgbv-social-media-branding-kit" class="bento-card reveal" target="_blank" style="transition-delay: 0.1s;">
+      <div class="bento-icon">🎨</div>
+      <div class="bento-title">Branding Kit</div>
+      <p class="bento-desc">Cohesive visual identities and asset kits for digital growth.</p>
+      <div class="bento-link">VIEW SERVICE ↗</div>
+    </a>
+    <a href="https://contra.com/s/F2OPl6Ub-ai-powered-product-ads" class="bento-card reveal" target="_blank" style="transition-delay: 0.2s;">
+      <div class="bento-icon">🤖</div>
+      <div class="bento-title">AI Product Ads</div>
+      <p class="bento-desc">Next-gen AI generated visuals for social marketing dominance.</p>
+      <div class="bento-link">VIEW SERVICE ↗</div>
+    </a>
+    <a href="https://contra.com/s/YF2bMq3F-modern-landing-page-design" class="bento-card reveal" target="_blank" style="transition-delay: 0.3s;">
+      <div class="bento-icon">🚀</div>
+      <div class="bento-title">Landing Pages</div>
+      <p class="bento-desc">Ultra-fast, high-converting pages for SaaS and Startups.</p>
+      <div class="bento-link">VIEW SERVICE ↗</div>
+    </a>
   </div>
 </section>
 
-<!-- PROJECTS (1x4 BENTO) -->
-<section id="projects" style="background: #080808;">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-label">Case Studies</div>
-      <h2>Featured Work</h2>
-    </div>
-    <div class="bento-grid reveal">
-      <a href="https://drive.proton.me/urls/3EX4Q8CMYW#BIJSOMqIZyYi" class="bento-card" target="_blank">
-        <div class="bento-title">UI Case Study</div>
-        <p class="bento-desc">Deep-dive into the user experience design of a modern digital application.</p>
-        <div class="bento-link">Proton Drive ↗</div>
-      </a>
-      <a href="https://drive.proton.me/urls/5AJ2GZSNBM#NQVHqNkT2sJJ" class="bento-card" target="_blank">
-        <div class="bento-title">Branding Showcase</div>
-        <p class="bento-desc">A full breakdown of a comprehensive social media branding kit.</p>
-        <div class="bento-link">Proton Drive ↗</div>
-      </a>
-      <a href="https://drive.proton.me/urls/VR3NSNXB40#lRUhx1eb4ruD" class="bento-card" target="_blank">
-        <div class="bento-title">AI Ads Library</div>
-        <p class="bento-desc">A gallery of product advertisements generated with AI precision.</p>
-        <div class="bento-link">Proton Drive ↗</div>
-      </a>
-      <a href="https://drive.proton.me/urls/8BJH1BRYVG#76YlzWkiMobB" class="bento-card" target="_blank">
-        <div class="bento-title">Landing Page</div>
-        <p class="bento-desc">Visual and functional landing page project for high-tier SaaS startups.</p>
-        <div class="bento-link">Proton Drive ↗</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-label">Get in Touch</div>
-      <h2>Let's build something iconic.</h2>
+  <div class="contact-wrap">
+    <div class="contact-box reveal">
+      <span class="label" style="text-align: left;">Available for projects</span>
+      <h2 style="font-size: 2.5rem; margin-bottom: 2.5rem;">Let's Create.</h2>
+      
+      <a href="mailto:rafael.design.co@proton.me" class="contact-method">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-info">
+          <p>Email</p>
+          <span>rafael.design.co@proton.me</span>
+        </div>
+      </a>
+
+      <a href="tel:09637792416" class="contact-method">
+        <div class="contact-icon">📱</div>
+        <div class="contact-info">
+          <p>Phone</p>
+          <span>09637792416</span>
+        </div>
+      </a>
     </div>
-    <div class="contact-grid reveal">
-      <div class="contact-box">
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <a href="tel:09637792416" class="contact-val">09637792416</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📧</div>
-          <a href="mailto:rafael.design.co@proton.me" class="contact-val">rafael.design.co@proton.me</a>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🌐</div>
-          <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank" class="contact-val">Facebook Page ↗</a>
-        </div>
-      </div>
-      <div class="contact-box" style="background: var(--accent); color: #000; border: none;">
-        <p style="font-weight: 800; font-size: 1.5rem; margin-bottom: 2rem;">Ready for your next digital masterpiece?</p>
-        <a href="https://contra.com/rafael_cana_8b0gke5l" class="btn-ghost" style="border-color: #000; color: #000; display: block; text-align: center;">HIRE ME ON CONTRA</a>
-      </div>
+
+    <div class="contact-box reveal" style="background: var(--accent); color: #000; display: flex; flex-direction: column; justify-content: center;">
+      <p style="font-weight: 800; font-size: 1.5rem; line-height: 1.2; margin-bottom: 2rem;">Ready to start your next masterpiece?</p>
+      <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank" class="btn btn-ghost" style="border-color: #000; color: #000; text-align: center; justify-content: center;">Hire me on Contra</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2026 RAFAEL Design Co. • Premium Digital Experiences • Masbate, Philippines</p>
-  <div class="footer-socials">
+  <p>© 2026 RAFAEL Design Co. • Masbate, Philippines</p>
+  <div class="footer-links">
     <a href="https://contra.com/rafael_cana_8b0gke5l" target="_blank">Contra</a>
     <a href="https://www.facebook.com/profile.php?id=61589071388506" target="_blank">Facebook</a>
   </div>
 </footer>
 
 <script>
-  // CURSOR SCRIPT
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
-  (function loop(){ rx+=(mx-rx)*0.13; ry+=(my-ry)*0.13; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  
-  document.querySelectorAll('a, button, .bento-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { 
-        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
-        ring.style.width = '60px'; ring.style.height = '60px';
-    });
-    el.addEventListener('mouseleave', () => { 
-        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-        ring.style.width = '32px'; ring.style.height = '32px';
-    });
-  });
+  // CURSOR SCRIPT (Pointer Device Only)
+  if (window.matchMedia("(pointer: fine)").matches) {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-  // REVEAL SCRIPT
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if(e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-        }
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    const animateRing = () => {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    };
+    animateRing();
+
+    document.querySelectorAll('a, button, .bento-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+  } else {
+    // Remove cursor elements on touch devices
+    document.getElementById('cursor').remove();
+    document.getElementById('cursorRing').remove();
+  }
+
+  // INTERSECTION OBSERVER
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
